@@ -1,5 +1,4 @@
 <template>
-    <!-- TODO: dynamically pass img URL -->
     <div class="article-container">
         <div
             class='article-card' 
@@ -45,4 +44,10 @@
     cursor: pointer;
     opacity: 0.6;
 }
+
+@media (max-width: 768px) {
+    .article-card {
+      margin-bottom: 2rem;
+    }
+  }
 </style>

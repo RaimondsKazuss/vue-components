@@ -9,11 +9,13 @@
       v-on:click="clicker"
       />
     </div>
+    <Login :authType="authType" />
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Article from './components/Article.vue'
+import Login from './components/Login.vue'
 
 export default {
   name: 'App',
@@ -32,20 +34,43 @@ export default {
           title: "The most beatuful duck in the world",
           img: "https://nas-national-prod.s3.amazonaws.com/styles/hero_mobile/s3/nyc-mandarin-duck_holly-mascaro.jpg?itok=-UKJAxBT"
         }
-      ]
+      ],
+      authType: "/register"
     }
   },
   components: {
     Header,
-    Article
+    Article,
+    Login
   },
   methods: {
     clicker () {
       console.log('clickerino works!')
+    },
+    submitFn () {
+      console.log('logged in!')
+    },
+    authSwitcher () {
+    const navUrl = "/register";
+
+    if (navUrl === "/register") {
+      return this.authType = {
+        title: "Login",
+        callBack: this.submitFn
+      }
     }
+}
+  },
+  mounted() {
+    this.authSwitcher()
   }
 }
 </script>
+
+
+//concept
+
+
 
 <style>
   body {
@@ -57,13 +82,20 @@ export default {
   }
 
   .page-container {
-    width: 100%;
     max-width: 60rem;
     height: 100%;
     display: flex;
+    flex-direction: row;
     margin: auto;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
+  }
+
+  @media (max-width: 768px) {
+    .page-container {
+      flex-direction: column;
+      align-items: center; 
+    }
   }
 </style>
